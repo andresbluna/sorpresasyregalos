@@ -20,7 +20,6 @@ public class Controller {
         return myEntityRepository.save(myEntity);
     }
 
-    // Read operation
     @GetMapping("myEntity")
     public List<MyEntity> getAllMyEntities() {
         return myEntityRepository.findAll();
