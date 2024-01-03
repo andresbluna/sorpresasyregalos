@@ -1,11 +1,19 @@
 package com.register.users.controller;
 
+import com.register.users.model.User;
 import com.register.users.repository.UserRepository;
+import com.register.users.service.UserService;
+import com.register.users.utils.Exceptions;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -15,45 +23,14 @@ public class Controller {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
     }
 
-    @Autowired
-    private AllExceptionHandler allExceptionHandler;
+@PostMapping
+public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
+    User createdUser = userService.createUser(user);
 
-    @PostMapping
-    public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
-        if (userService.isEmailRegistered(user.getEmail())) {
-            return new ResponseEntity<>(Collections.singletonMap("error01",
-                    "El correo ya esta registrado en el Banco BCI, por favor intente con uno diferente"),
-                    HttpStatus.BAD_REQUEST);
-        }
-        user.setUuid(UUID.randomUUID().toString());
-        LocalDateTime now = LocalDateTime.now();
-        user.setCreated(now);
-        user.setModified(now);
-        user.setLastLogin(now);
-        user.setActive(true);
-        String token = TokenG.generateNewToken(user);
-        user.setToken(token);
-        User createdUser = userService.createuser(user);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/users")
-    public User getUser(@RequestHeader("Authorization") String token) {
-        UserDetails userDetails = (UserDetails)
-                SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userRepository.findByName(userDetails.getUsername());
-        if (!user.getToken().equals(token)) {
-            throw new IllegalArgumentException("El token no coincide con el token del usuario");
-        }
-
-        return user;
-    }
-
+    // Devuelve el usuario creado y el estado HTTP 201 - Created
+    return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+}
 
 }
