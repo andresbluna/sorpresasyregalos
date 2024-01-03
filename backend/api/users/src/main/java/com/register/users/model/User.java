@@ -9,21 +9,35 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "users")
 public class User {
+    private static final String UUID_GENERATOR_STRATEGY = "org.hibernate.id.UUIDGenerator";
+
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String Id;
+    @GenericGenerator(name = "UUID", strategy = UUID_GENERATOR_STRATEGY)
+    private String id;
     private String user;
     private String mail;
     private int phone;
-    private boolean Uuid;
+    private boolean uuid;
+
+    public User(String id, String user, String mail, int phone, boolean uuid) {
+        this.id = id;
+        this.user = user;
+        this.mail = mail;
+        this.phone = phone;
+        this.uuid = uuid;
+    }
+
+    public User() {
+
+    }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getUser() {
@@ -51,10 +65,10 @@ public class User {
     }
 
     public boolean isUuid() {
-        return Uuid;
+        return uuid;
     }
 
     public void setUuid(boolean uuid) {
-        Uuid = uuid;
+        this.uuid = uuid;
     }
 }
