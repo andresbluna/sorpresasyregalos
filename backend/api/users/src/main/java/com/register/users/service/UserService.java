@@ -10,34 +10,17 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public User createUser(User user) {
+        // Aquí puedes agregar alguna lógica de validación de datos antes de guardar el usuario en la base de datos
+
+        // llama a save() del repositorio para almacenar el usuario en la base de datos
         return userRepository.save(user);
-    }
-
-    public User getUserById(String id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        return optionalUser.orElse(null);
-    }
-
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    public void deleteUser(String id) {
-        userRepository.deleteById(id);
-    }
-
-    public boolean isEmailRegistered(String email) {
-        return userRepository.findByEmail(email) != null;
-    }
-
-    public User createuser(User user) {
-        return userRepository.save(user);
-    }
-
-    public void deleteUserById(Long id) {
     }
 }
