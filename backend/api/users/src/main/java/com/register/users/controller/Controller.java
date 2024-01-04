@@ -1,7 +1,6 @@
 package com.register.users.controller;
 
 import com.register.users.model.User;
-import com.register.users.repository.UserRepository;
 import com.register.users.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

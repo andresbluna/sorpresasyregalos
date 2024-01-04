@@ -9,12 +9,12 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "users")
 public class User {
-    private static final String UUID_GENERATOR_STRATEGY = "org.hibernate.id.UUIDGenerator";
+    private static final String
+            UUID_GENERATOR_STRATEGY = "org.hibernate.id.UUIDGenerator";
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = UUID_GENERATOR_STRATEGY)
-    private String id;
     private String user;
     private String gender;
     private String name;
@@ -22,23 +22,13 @@ public class User {
     private String mail;
     private int phone;
 
-    public User(String id, String city, String address, String user, String mail, int phone, int numberhome) {
-        this.id = id;
+    public User(String user, String gender, String name, String surname, String mail, int phone) {
         this.user = user;
+        this.gender = gender;
+        this.name = name;
+        this.surname = surname;
         this.mail = mail;
         this.phone = phone;
-    }
-
-    public User() {
-
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getUser() {
