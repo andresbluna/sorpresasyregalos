@@ -20,6 +20,7 @@ public class User {
     private String name;
     private String surname;
     private String mail;
+    private String id;
     private int phone;
 
     public User(String user, String gender, String name, String surname, String mail, int phone) {

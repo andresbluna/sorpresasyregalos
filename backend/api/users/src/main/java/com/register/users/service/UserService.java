@@ -20,4 +20,17 @@ public class UserService {
         // llama a save() del repositorio para almacenar el usuario en la base de datos
         return userRepository.save(user);
     }
+    public User updateUser(Long id, User newUser) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    // Aquí estableces todos los campos del usuario existente con los del nuevo usuario
+                    user.setName(newUser.getName());  // Suponiendo que tenga un campo llamado "name"
+                    // Agrega aquí todos los demás campos del usuario
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new NotFoundException("User not found with id " + id));
+    }
+
+    public boolean deleteUser(Long id) {
+    }
 }
