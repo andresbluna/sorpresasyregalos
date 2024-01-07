@@ -32,5 +32,11 @@ public class UserService {
     }
 
     public boolean deleteUser(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return true;
+        } else {
+            throw new NotFoundException("User not found with id " + id);
+        }
     }
 }
