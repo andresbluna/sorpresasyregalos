@@ -31,13 +31,15 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("User not found with id " + id));
     }
 
-    public boolean deleteUser(Long id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-            return true;
-        } else {
-            throw new NotFoundException("User not found with id " + id);
-        }
+
     }
+public User getUser(Long id) {
+    if (userRepository.existsById(id)) {
+        return userRepository.findById(id).orElse(null);
+    } else {
+        throw new NotFoundException("User not found with id " + id);
+    }
+}
+
 
 }
