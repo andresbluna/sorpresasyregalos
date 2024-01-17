@@ -19,7 +19,7 @@ public class Controller {
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public Respo
+    public Respository
     nseEntity<?> updateUser(@PathVariable Long id, @RequestBody @Valid User newUser) {
         User updatedUser = userService.updateUser(id, newUser);
         if (updatedUser != null) {
