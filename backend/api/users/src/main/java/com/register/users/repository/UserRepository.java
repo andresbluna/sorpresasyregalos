@@ -1,6 +1,6 @@
 package com.register.users.repository;
 
-import com.register.users.models.User;
+import com.register.users.models.User2;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import org.springframework.stereotype.Repository;
@@ -14,14 +14,14 @@ public class UserRepository {
                 ("userPersistenceUnit").createEntityManager();
     }
 
-    public User save(User user) {
+    public User2 save(User2 user) {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
         entityManager.getTransaction().commit();
         return user;
     }
 
-    public User findById(Long id) {
-        return entityManager.find(User.class, id);
+    public User2 findById(Long id) {
+        return entityManager.find(User2.class, id);
     }
 }
