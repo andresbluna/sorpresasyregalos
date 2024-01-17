@@ -1,7 +1,6 @@
 package com.register.users.repository;
 
-import com.register.users.model.User;
-import io.micrometer.observation.ObservationFilter;
+import com.register.users.models.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import org.springframework.stereotype.Repository;
