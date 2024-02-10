@@ -1,13 +1,13 @@
-package com.register.users;
+package com.sorpresas.userapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class User2sApplication {
+public class UsersapiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(User2sApplication.class, args);
+		SpringApplication.run(UsersapiApplication.class, args);
 	}
 
 }

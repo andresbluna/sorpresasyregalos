@@ -1,10 +1,10 @@
-package com.register.users;
+package com.sorpresas.userapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class User2sApplicationTests {
+class UsersapiApplicationTests {
 
 	@Test
 	void contextLoads() {
