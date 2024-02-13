@@ -16,6 +16,15 @@ public class ClientModel {
     private String surname;
     private String address;
     private int numberUser;
+    private int password;
+
+    public int getPassword() {
+        return password;
+    }
+
+    public void setPassword(int password) {
+        this.password = password;
+    }
 
     public ClientModel() {
         this.id = id;
@@ -24,6 +33,7 @@ public class ClientModel {
         this.surname = surname;
         this.address = address;
         this.numberUser = numberUser;
+        this.password = password;
     }
 
     public Long getId() {
