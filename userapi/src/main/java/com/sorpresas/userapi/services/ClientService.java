@@ -5,26 +5,15 @@ import org.springframework.stereotype.Service;
 
     @Service
     public class ClientService {
-        private static final int MIN_PASSWORD_LENGTH = 8;
-
         public static boolean isValidPassword(String password) {
             if (password == null || password.isEmpty()) {
                 return false;
             }
 
-            if (password.length() < MIN_PASSWORD_LENGTH) {
+            if (password.length() != 8) {  // Aquí puedes poner cualquier longitud que desees
                 return false;
             }
 
-            String password = "yourPasswordHere";
-            String message = "";
-
-            for (int i = 0; i < 10; i++) {
-                if (password.length() == 10){
-                    message = "Contraseña no debe tener simbolos";
-                }
-            }
-
-            return message;
+            return true;  // Si llega hasta aquí, la contraseña tiene la longitud correcta y se retorna true
         }
 }
