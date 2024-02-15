@@ -16,15 +16,12 @@ import org.springframework.stereotype.Service;
                 return false;
             }
 
-            String password = "yourPasswordHere";
-            String message = "";
-
             for (int i = 0; i < 10; i++) {
-                if (password.length() == 10){
-                    message = "Contraseña no debe tener simbolos";
+                if (password.length() == 8){
+                    // do something if password length is 8
                 }
             }
 
-            return message;
+            return true;
         }
 }
