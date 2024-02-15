@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
                 return false;
             }
 
-            if (password.length() != 8) {  // Aquí puedes poner cualquier longitud que desees
+            if (password.length() != 8) {
                 return false;
             }
 
-            return true;  // Si llega hasta aquí, la contraseña tiene la longitud correcta y se retorna true
+
+            return true;
         }
 }
