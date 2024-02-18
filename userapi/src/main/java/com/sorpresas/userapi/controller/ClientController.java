@@ -17,48 +17,42 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    // Método para crear un nuevo cliente
     @PostMapping
     public ResponseEntity<ClientModel> createClient(@RequestBody ClientModel client) {
         ClientModel createdClient = clientService.createClient(client);
         return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
     }
 
-    // Método para obtener todos los clientes
     @GetMapping
     public ResponseEntity<List<ClientModel>> getAllClients() {
         List<ClientModel> clients = clientService.getAllClients();
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
-
-    // Método para obtener un cliente por su ID
     @GetMapping("/{clientId}")
-    public ResponseEntity<Client> getClientById(@PathVariable Long clientId) {
-        Client client = clientService.getClientById(clientId);
-        if (client != null) {
-            return new ResponseEntity<>(client, HttpStatus.OK);
+    public ResponseEntity<ClientModel> getClientById(@PathVariable Long clientId) {
+        boolean client = ClientService.getClientById(clientId);
+        if (client) {
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    // Método para actualizar la información de un cliente por su ID
     @PutMapping("/{clientId}")
-    public ResponseEntity<Client> updateClient(@PathVariable Long clientId, @RequestBody Client updatedClient) {
-        Client client = clientService.updateClient(clientId, updatedClient);
+    public ResponseEntity<ClientModel> updateClient(@PathVariable Long clientId,
+                                                    @RequestBody ClientModel updatedClient) {
+        ClientModel client = clientService.updateClient(clientId, updatedClient);
         if (client != null) {
             return new ResponseEntity<>(client, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    // Método para eliminar un cliente por su ID
     @DeleteMapping("/{clientId}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long clientId) {
-        boolean deleted = clientService.deleteClient(clientId);
-        if (deleted) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        ClientModel client = clientService.deleteClient(clientId);
+        if (client != null) {
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
