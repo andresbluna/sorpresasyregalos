@@ -17,32 +17,27 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    // Método para crear un nuevo cliente
     @PostMapping
     public ResponseEntity<ClientModel> createClient(@RequestBody ClientModel client) {
         ClientModel createdClient = clientService.createClient(client);
         return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
     }
 
-    // Método para obtener todos los clientes
     @GetMapping
     public ResponseEntity<List<ClientModel>> getAllClients() {
         List<ClientModel> clients = clientService.getAllClients();
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
-
-    // Método para obtener un cliente por su ID
     @GetMapping("/{clientId}")
     public ResponseEntity<ClientModel> getClientById(@PathVariable Long clientId) {
         boolean client = ClientService.getClientById(clientId);
         if (client) {
-            return new ResponseEntity<>(client, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    // Método para actualizar la información de un cliente por su ID
     @PutMapping("/{clientId}")
     public ResponseEntity<ClientModel> updateClient(@PathVariable Long clientId,
                                                     @RequestBody ClientModel updatedClient) {
@@ -53,13 +48,11 @@ public class ClientController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    // Método para eliminar un cliente por su ID
     @DeleteMapping("/{clientId}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long clientId) {
-        ClientModel client = clientService.updateClient(clientId, deleteClient());
-        if (deleted) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        ClientModel client = clientService.deleteClient(clientId);
+        if (client != null) {
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

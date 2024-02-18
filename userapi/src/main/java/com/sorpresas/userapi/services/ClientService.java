@@ -37,7 +37,6 @@ import java.util.List;
     }
 
     public ClientModel deleteClient(Long clientId){
-            return deleteClient;
-
+            return deleteClient(clientId);
     }
 }
