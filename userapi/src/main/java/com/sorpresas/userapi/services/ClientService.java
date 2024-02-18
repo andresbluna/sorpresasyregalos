@@ -12,22 +12,32 @@ import java.util.List;
                 return false;
             }
 
-            if (password.length() != 8) {
-                return false;
-            }
-
-            return true;
+            return password.length() == 8;
 
         }
 
         public ClientModel createClient(ClientModel client) {
-            public ClientModel createClient (ClientModel client){
+            return client;
+
             }
 
-        }
 
-        public List<ClientModel> getAllClients() {
-            public ClientModel getAllClients (ClientModel clients){
+            public static boolean getClientById(Long clientId){
+
+            return getClientById(clientId);
+
             }
-        }
+
+    public List<ClientModel> getAllClients() {
+            return getAllClients();
     }
+
+    public ClientModel updateClient(Long clientId, ClientModel updatedClient) {
+            return updatedClient;
+    }
+
+    public ClientModel deleteClient(Long clientId){
+            return deleteClient;
+
+    }
+}

@@ -33,9 +33,9 @@ public class ClientController {
 
     // Método para obtener un cliente por su ID
     @GetMapping("/{clientId}")
-    public ResponseEntity<Client> getClientById(@PathVariable Long clientId) {
-        Client client = clientService.getClientById(clientId);
-        if (client != null) {
+    public ResponseEntity<ClientModel> getClientById(@PathVariable Long clientId) {
+        boolean client = ClientService.getClientById(clientId);
+        if (client) {
             return new ResponseEntity<>(client, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,8 +44,9 @@ public class ClientController {
 
     // Método para actualizar la información de un cliente por su ID
     @PutMapping("/{clientId}")
-    public ResponseEntity<Client> updateClient(@PathVariable Long clientId, @RequestBody Client updatedClient) {
-        Client client = clientService.updateClient(clientId, updatedClient);
+    public ResponseEntity<ClientModel> updateClient(@PathVariable Long clientId,
+                                                    @RequestBody ClientModel updatedClient) {
+        ClientModel client = clientService.updateClient(clientId, updatedClient);
         if (client != null) {
             return new ResponseEntity<>(client, HttpStatus.OK);
         } else {
@@ -56,7 +57,7 @@ public class ClientController {
     // Método para eliminar un cliente por su ID
     @DeleteMapping("/{clientId}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long clientId) {
-        boolean deleted = clientService.deleteClient(clientId);
+        ClientModel client = clientService.updateClient(clientId, deleteClient());
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
