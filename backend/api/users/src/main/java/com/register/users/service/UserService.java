@@ -1,7 +1,6 @@
 package com.register.users.service;
 import com.register.users.model.User;
 import com.register.users.repository.UserRepository;
-import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +24,12 @@ public class UserService {
     }
 
 
-    public User updateUser (User user) {
+    public User updateUser (Long id, User user) {
 
         if (user != null) {
 
 
-
         }
-        return updateUser(user);
+        return updateUser(id, user);
     }
 }

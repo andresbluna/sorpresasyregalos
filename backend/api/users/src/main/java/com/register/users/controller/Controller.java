@@ -27,16 +27,6 @@ public class Controller {
             // user not found
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-        boolean isRemoved = userService.deleteUser(id);
-        if (!isRemoved) {
-            // user not found
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
     }
 }
