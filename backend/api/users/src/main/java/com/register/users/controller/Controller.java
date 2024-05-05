@@ -18,15 +18,4 @@ public class Controller {
         UserModel createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody @Valid UserModel newUser) {
-        UserModel updatedUser = userService.updateUser(newUser);
-        if (updatedUser != null) {
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-        } else {
-            // user not found
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-    }
 }

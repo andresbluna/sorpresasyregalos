@@ -14,20 +14,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserModel createUser (UserModel user) {
-
-        if (user != null){
-            userRepository.save(user);
-        }
-        return createUser(user);
-
-    }
-
-
-    public UserModel updateUser (UserModel user) {
+    public UserModel createUser(UserModel user) {
 
         if (user != null) {
+
+            return userRepository.save(user);
         }
-        return updateUser(user);
+
+        return null;
+
     }
+
 }
