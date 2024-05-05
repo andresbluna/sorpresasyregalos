@@ -8,7 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserModel {
     private static final String
             UUID_GENERATOR_STRATEGY = "org.hibernate.id.UUIDGenerator";
 
@@ -23,13 +23,17 @@ public class User {
     private String id;
     private int phone;
 
-    public User(String user, String gender, String name, String surname, String mail, int phone) {
+    public UserModel(String user, String gender, String name, String surname, String mail, int phone) {
         this.user = user;
         this.gender = gender;
         this.name = name;
         this.surname = surname;
         this.mail = mail;
         this.phone = phone;
+    }
+
+    public UserModel() {
+
     }
 
     public String getUser() {

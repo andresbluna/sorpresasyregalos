@@ -1,5 +1,5 @@
 package com.register.users.service;
-import com.register.users.model.User;
+import com.register.users.model.UserModel;
 import com.register.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser (User user) {
+    public UserModel createUser (UserModel user) {
 
         if (user != null){
             userRepository.save(user);
@@ -24,12 +24,10 @@ public class UserService {
     }
 
 
-    public User updateUser (Long id, User user) {
+    public UserModel updateUser (UserModel user) {
 
         if (user != null) {
-
-
         }
-        return updateUser(id, user);
+        return updateUser(user);
     }
 }
