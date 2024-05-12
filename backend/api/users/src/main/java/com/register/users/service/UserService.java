@@ -2,11 +2,13 @@ package com.register.users.service;
 import com.register.users.model.UserModel;
 import com.register.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+@ComponentScan
 @Service
 public class UserService {
-    @Autowired
+
     private final UserRepository userRepository;
 
     @Autowired
